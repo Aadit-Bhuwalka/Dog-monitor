@@ -56,28 +56,51 @@ console.log("DOGS FOUND:");
 console.log(JSON.stringify(dogs, null, 2));
 console.log("TOTAL DOGS:", dogs.length);
 
-    const cleanedDogs = [...new Set(dogs)];
-
     const previousDogs = JSON.parse(
       fs.readFileSync("previousDogs.json", "utf8")
     );
 
-    const newDogs = dogs;
+    const newDogs2 = dogs.filter(
+      (dog) => !previousDogs.some((prev) => prev.link === dog.link)
+    );
 
-    if (newDogs.length > 0) {
+    if (newDogs2.length > 0) {
       console.log("New dogs found!");
 
-      for (const dog of newDogs) {
+      for (const dog of newDogs2) {
         console.log(dog);
 
+        const embed = {
+          title: `🐶 ${dog.name}`,
+          description: dog.summary || "A new dog is available for adoption!",
+          url: dog.link,
+          color: 0xf4a460,
+          fields: [
+            {
+              name: "Adopt",
+              value: `[View profile](${dog.link})`,
+              inline: false,
+            },
+          ],
+          footer: {
+            text: "SED Vision Australia",
+          },
+          timestamp: new Date().toISOString(),
+        };
+
+        if (dog.image) {
+          embed.image = { url: dog.image };
+        }
+
         await axios.post(DISCORD_WEBHOOK, {
-          content: `🐶 New dog available for adoption!\n\n${dog}\n\n${URL}`,
+          content: "🐾 New dog available for adoption!",
+          embeds: [embed],
         });
       }
 
       fs.writeFileSync(
         "previousDogs.json",
-        JSON.stringify(cleanedDogs, null, 2)
+        JSON.stringify(dogs, null, 2)
       );
     } else {
       console.log("No new dogs found.");
