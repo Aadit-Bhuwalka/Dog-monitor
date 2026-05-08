@@ -25,6 +25,8 @@ jobs:
         run: node checkDogs.js
         env:
           DISCORD_WEBHOOK: https://discord.com/api/webhooks/1502106937175834756/4X63E3LQfHl_GecR0rMW3XONvWVjaxs8kmj0OpTXaQlDHwNRTP2rW1wNOJuAzY66RCeG
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
 
       - name: Commit updated dog list
         run: |

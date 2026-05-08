@@ -1,11 +1,31 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const fs = require("fs");
+const nodemailer = require("nodemailer");
 
 const URL =
   "https://sed.visionaustralia.org/about-us/news-and-stories?sort_by=created&sort_order=DESC&field_categories_target_id%5B3691%5D=3691";
 
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK;
+const GMAIL_USER = process.env.GMAIL_USER;
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
+
+const mailer = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: GMAIL_USER,
+    pass: GMAIL_APP_PASSWORD,
+  },
+});
+
+async function sendEmail(subject, html) {
+  await mailer.sendMail({
+    from: `"Dog Monitor 🐶" <${GMAIL_USER}>`,
+    to: GMAIL_USER,
+    subject,
+    html,
+  });
+}
 
 async function checkDogs() {
   try {
@@ -110,6 +130,19 @@ console.log("TOTAL DOGS:", dogs.length);
           content: "🐾 New dog available for adoption!",
           embeds: [embed],
         });
+
+        await sendEmail(
+          `🐶 New dog available for adoption: ${dog.name}`,
+          `
+            <h2>${dog.name}</h2>
+            ${dog.image ? `<img src="${dog.image}" alt="${dog.name}" style="max-width:400px;border-radius:8px;"/>` : ""}
+            <p>${dog.summary || ""}</p>
+            <p><strong>Posted:</strong> ${dog.date || "Recently"}</p>
+            <p><a href="${dog.link}">View adoption profile →</a></p>
+            <hr/>
+            <small>SED Vision Australia Dog Monitor</small>
+          `
+        );
       }
 
       fs.writeFileSync(
@@ -118,6 +151,20 @@ console.log("TOTAL DOGS:", dogs.length);
       );
     } else {
       console.log("No new dogs found.");
+
+      await axios.post(DISCORD_WEBHOOK, {
+        content: "🔍 Dog monitor ran — no new dogs found.",
+      });
+
+      await sendEmail(
+        "🔍 Dog Monitor — No new dogs found",
+        `
+          <p>The dog monitor ran at ${new Date().toLocaleString("en-AU", { timeZone: "Australia/Melbourne" })} (Melbourne time) and found <strong>no new dogs</strong> available for adoption.</p>
+          <p><a href="${URL}">View the adoption page →</a></p>
+          <hr/>
+          <small>SED Vision Australia Dog Monitor</small>
+        `
+      );
     }
   } catch (err) {
     console.error(err);
