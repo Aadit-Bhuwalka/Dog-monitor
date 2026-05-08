@@ -15,16 +15,46 @@ async function checkDogs() {
 
     const dogs = [];
 
-    $(".views-row").each((i, el) => {
-      const text = $(el).text().trim();
+$(".card.image-card").each((i, el) => {
 
-      if (text.length > 0) {
-        dogs.push(text);
-      }
-    });
-    console.log("DOGS FOUND:");
-    console.log(JSON.stringify(dogs, null, 2));
-    console.log("TOTAL DOGS:", dogs.length);
+    const name = $(el)
+        .find("h3.card-title")
+        .text()
+        .trim();
+
+    const summary = $(el)
+        .find("p.news-desp")
+        .text()
+        .trim();
+
+    const image = $(el)
+        .find("img")
+        .attr("src");
+
+    const relativeLink = $(el)
+        .find("a")
+        .attr("href");
+
+    const link = relativeLink
+        ? `https://sed.visionaustralia.org${relativeLink}`
+        : URL;
+
+    const imageUrl = image
+        ? `https://sed.visionaustralia.org${image}`
+        : "";
+
+    if (name) {
+        dogs.push({
+            name,
+            summary,
+            image: imageUrl,
+            link
+        });
+    }
+});
+console.log("DOGS FOUND:");
+console.log(JSON.stringify(dogs, null, 2));
+console.log("TOTAL DOGS:", dogs.length);
 
     const cleanedDogs = [...new Set(dogs)];
 
