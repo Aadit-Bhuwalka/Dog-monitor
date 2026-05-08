@@ -22,9 +22,6 @@ async function checkDogs() {
         dogs.push(text);
       }
     });
-    console.log("DOGS FOUND:");
-    console.log(JSON.stringify(dogs, null, 2));
-    console.log("TOTAL DOGS:", dogs.length);
 
     const cleanedDogs = [...new Set(dogs)];
 
@@ -32,7 +29,9 @@ async function checkDogs() {
       fs.readFileSync("previousDogs.json", "utf8")
     );
 
-    const newDogs = dogs;
+    const newDogs = cleanedDogs.filter(
+      (dog) => !previousDogs.includes(dog)
+    );
 
     if (newDogs.length > 0) {
       console.log("New dogs found!");
