@@ -2,7 +2,7 @@ name: Dog Monitor
 
 on:
   schedule:
-    - cron: '0 8,20 * * *'
+    - cron: '0 23,11 * * *'
   workflow_dispatch:
 
 jobs:
