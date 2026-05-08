@@ -17,13 +17,21 @@ async function checkDogs() {
 
 $(".card.image-card").each((i, el) => {
 
-    const name = $(el)
+    const rawName = $(el)
         .find("h3.card-title")
         .text()
         .trim();
 
+    // Strip "Adopt a career-changed dog: " prefix if present
+    const name = rawName.replace(/^Adopt a career-changed dog:\s*/i, "");
+
     const summary = $(el)
         .find("p.news-desp")
+        .text()
+        .trim();
+
+    const date = $(el)
+        .find("p.badge.date")
         .text()
         .trim();
 
@@ -47,6 +55,7 @@ $(".card.image-card").each((i, el) => {
         dogs.push({
             name,
             summary,
+            date,
             image: imageUrl,
             link
         });
@@ -77,9 +86,14 @@ console.log("TOTAL DOGS:", dogs.length);
           color: 0xf4a460,
           fields: [
             {
+              name: "Posted",
+              value: dog.date || "Recently",
+              inline: true,
+            },
+            {
               name: "Adopt",
               value: `[View profile](${dog.link})`,
-              inline: false,
+              inline: true,
             },
           ],
           footer: {
