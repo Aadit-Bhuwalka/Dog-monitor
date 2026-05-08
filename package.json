@@ -1,0 +1,13 @@
+{
+  "name": "dog-monitor",
+  "version": "1.0.0",
+  "main": "checkDogs.js",
+  "scripts": {
+    "start": "node checkDogs.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0",
+    "resend": "^6.12.3"
+  }
+}
