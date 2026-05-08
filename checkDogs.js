@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 
 const URL =
-  "https://sed.visionaustralia.org/about-our-dogs/released-dogs/adopt";
+  "https://sed.visionaustralia.org/about-us/news-and-stories?sort_by=created&sort_order=DESC&field_categories_target_id%5B3691%5D=3691";
 
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK;
 
