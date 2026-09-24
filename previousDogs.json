@@ -1,9 +1,23 @@
 [
   {
+    "name": "Imogen (VIC)",
+    "summary": "Affectionate, loyal and easy-going, Imogen is a devoted companion who loves being part of daily life and is ready to settle into a loving home.",
+    "date": "24 Sep 2026",
+    "image": "https://sed.visionaustralia.org/sites/designsystem/files/Imogen.jpeg",
+    "link": "https://sed.visionaustralia.org/about-us/news-and-stories/26-09-24/adopt-career-changed-dog-imogen-vic"
+  },
+  {
+    "name": "Zolton (VIC)",
+    "summary": "A loyal, intelligent and sensitive companion who thrives in a calm home, seeking experienced adopters who can help him navigate the world at his own pace.",
+    "date": "24 Sep 2026",
+    "image": "https://sed.visionaustralia.org/sites/designsystem/files/Zolton.jpg",
+    "link": "https://sed.visionaustralia.org/about-us/news-and-stories/26-09-24/adopt-career-changed-dog-zolton-vic"
+  },
+  {
     "name": "Lyric (VIC)",
-    "summary": "Lyric is a social, trainable and enthusiastic dog who will thrive in a calm, structured home, open to support his training and ongoing skin health.",
+    "summary": "Lyric is an affectionate, trainable and enthusiastic dog who will thrive in a calm, structured home that can support his ongoing skin health",
     "date": "17 Sep 2026",
-    "image": "https://sed.visionaustralia.org/themes/custom/design_system/images/default_listing_img.png",
+    "image": "https://sed.visionaustralia.org/sites/designsystem/files/Lyric_0.jpg",
     "link": "https://sed.visionaustralia.org/about-us/news-and-stories/26-09-17/adopt-career-changed-dog-lyric-vic"
   }
 ]
