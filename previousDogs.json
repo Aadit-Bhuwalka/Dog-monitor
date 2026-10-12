@@ -1,5 +1,12 @@
 [
   {
+    "name": "Jersey (VIC)",
+    "summary": "Jersey is a loving, sociable and curious girl who enjoys companionship, exploring the world and being part of family life.",
+    "date": "12 Oct 2026",
+    "image": "https://sed.visionaustralia.org/sites/designsystem/files/Jersey.JPG",
+    "link": "https://sed.visionaustralia.org/about-us/news-and-stories/26-10-12/adopt-career-changed-dog-jersey-vic"
+  },
+  {
     "name": "Sugar (VIC)",
     "summary": "Sugar is a sweet, affectionate and energetic girl who loves people, thrives on adventure. Seeking a patient family who can support her confidence and activity",
     "date": "01 Oct 2026",
@@ -12,12 +19,5 @@
     "date": "30 Sep 2026",
     "image": "https://sed.visionaustralia.org/sites/designsystem/files/Nelly.jpeg",
     "link": "https://sed.visionaustralia.org/about-us/news-and-stories/26-09-30/adopt-career-changed-dog-nelly-vic"
-  },
-  {
-    "name": "Zolton (VIC)",
-    "summary": "A loyal, intelligent and sensitive companion who thrives in a calm home, seeking experienced adopters who can help him navigate the world at his own pace.",
-    "date": "24 Sep 2026",
-    "image": "https://sed.visionaustralia.org/sites/designsystem/files/Zolton.jpg",
-    "link": "https://sed.visionaustralia.org/about-us/news-and-stories/26-09-24/adopt-career-changed-dog-zolton-vic"
   }
 ]
